@@ -97,7 +97,7 @@ noteEarthurl : ${noteEarthurl }
 ${pages.mainHTML}
 </main>
 
-
+서버용 코드 바꿀거 c:set var="noteEarthurl" value="http://106.10.71.20:6080/noteEarth"/
 
 <div class="pagenav">
 <div>
@@ -133,7 +133,7 @@ ${pages.mainHTML}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-danger" onclick="location.href='${noteEarthurl}/deletePages.do?pageCode=${pages.pageCode}&pageIndex=${pages.pageIndex }&noteCode=${pages.noteCode }'">페이지 삭제</button>
+        <button type="button" class="btn btn-danger" onclick="location.href='${noteEarthurl}/deletePages.do?pageCode=${pages.pageCode}&pageIndex=${pages.pageIndex }&noteCode=${pages.noteCode }&tempCode=${pages.tempCode }'">페이지 삭제</button>
       </div>
     </div>
   </div>

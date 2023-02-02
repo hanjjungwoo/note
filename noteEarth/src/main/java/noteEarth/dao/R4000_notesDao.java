@@ -16,7 +16,7 @@ public interface R4000_notesDao {
 	
 	public void updatePageMainHTML(Pages pages);
 	
-	public Pages deletePages(Pages pages);
+	public void deletePages(Pages pages);
 	
 	public void add1intoPageIndexAfterThisPage(Pages pages);
 	public void reduce1intoPageIndexAfterdeletedPage(Pages pages);

@@ -8,6 +8,7 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 import noteEarth.dao.R2000_myTempsDao;
 import noteEarth.dao.R4000_notesDao;
 import noteEarth.vo.PageTemplates;
+import noteEarth.vo.Pages;
 
 
 public class Run01 {
@@ -23,6 +24,12 @@ public class Run01 {
 		for(PageTemplates each : ptlist) {
 			System.out.println(each.getTempCode());
 		}
+		
+		Pages delpages = new Pages();
+		delpages.setNoteCode("202302012326351029");
+		delpages.setPageIndex(4);
+		obj.reduce1intoPageIndexAfterdeletedPage(delpages);
+		
 	}
 
 }
