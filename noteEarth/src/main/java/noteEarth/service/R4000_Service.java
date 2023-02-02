@@ -53,14 +53,14 @@ public class R4000_Service {
 	}
 	
 	public Pages deletePages(Pages pages) {
+		//지움
 		dao4000.deletePages(pages);
 		//뒤에 페이지들 앞으로 땡기기
 		dao4000.reduce1intoPageIndexAfterdeletedPage(pages);
-		//이동할 페이지 불러오기
-		Pages prevPages = new Pages();
-		prevPages.setNoteCode(pages.getNoteCode());
-		prevPages.setPageIndex(pages.getPageIndex()-1);
-		return dao4000.selectPages(prevPages);
+		//삭제한 페이지의 앞장 페이지로 이동할 수 있게 불러와서 리턴
+		pages.setPageIndex(pages.getPageIndex()-1);
+		pages.setPageCode(null);
+		return dao4000.selectPages(pages);
 	}
 
 	public Pages insertPages(Pages pages) {

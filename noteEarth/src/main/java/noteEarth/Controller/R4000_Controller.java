@@ -17,15 +17,15 @@ public class R4000_Controller {
 	@Autowired
 	private R4000_Service service;
 
-	/*
-	 * //http://localhost:6080/noteEarth/addNote.do
-	 * 
-	 * @RequestMapping("/addNote.do") public String addNote() {
-	 * 
-	 * return "/WEB-INF/Req4000/R4000_addnote.jsp"; }
-	 *
-	 *이거말고 인덱스에서 시작
-	 */
+	
+	  //http://localhost:6080/noteEarth/addNote.do
+	  
+	  @RequestMapping("/addNote.do") public String addNote() {
+	  return "/WEB-INF/Req4000/R4000_addnote.jsp"; 
+	  }
+	 
+	//  이거말고 인덱스에서 시작
+	 
 	
 	//http://localhost:6080/noteEarth/createNote.do
 	@RequestMapping("/createNote.do")
