@@ -1,5 +1,7 @@
 package noteEarth.dao;
 
+import java.util.List;
+
 import noteEarth.vo.Notes;
 import noteEarth.vo.Pages;
 
@@ -11,7 +13,7 @@ public interface R4000_notesDao {
 	public String createPagesSeq();
 	public void insertPages(Pages pages);
 	
-	public Notes selectNotes(Notes notes);
+	public List<Notes> selectNotes(Notes notes);
 	public Pages selectPages(Pages pages);
 	
 	public void updatePageMainHTML(Pages pages);

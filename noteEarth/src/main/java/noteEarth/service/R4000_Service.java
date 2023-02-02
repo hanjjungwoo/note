@@ -1,5 +1,7 @@
 package noteEarth.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,14 +37,14 @@ public class R4000_Service {
 		return newPages;
 	}
 		
-	public Notes selectNotes(Notes notes) {
+	public List<Notes> selectNoteList(Notes notes) {
 		return dao4000.selectNotes(notes);
 	}
 	
 	public Notes selectNotes(String noteCode) {
 		Notes notes = new Notes();
 		notes.setNoteCode(noteCode);
-		return dao4000.selectNotes(notes);
+		return dao4000.selectNotes(notes).get(0);
 	}
 	
 	public Pages selectPages(Pages pages) {

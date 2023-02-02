@@ -15,17 +15,3 @@ SELECT * FROM pages WHERE notecode='202302012326351029';
 SELECT * FROM notes;
 
 DELETE FROM notes;
-
-
-SELECT PAGECODE, max(pageIndex) totalPageCount FROM pages p,
-(SELECT * FROM notes WHERE email = 'jeju@email.com') subnote
-WHERE subnote.notecode = p.NOTECODE GROUP BY PAGECODE ;
-
-SELECT NOTECODE , max(pageIndex) totalPageCount FROM pages p GROUP BY NOTECODE ORDER BY NOTECODE ;
-
-SELECT n.* , totalPageCount FROM notes n,
-(SELECT NOTECODE, max(pageIndex) totalPageCount FROM pages p GROUP BY NOTECODE) lp
-WHERE n.EMAIL ='jeju@email.com' AND 
-n.NOTECODE = lp.notecode
-ORDER BY n.NOTECODE ;
-;

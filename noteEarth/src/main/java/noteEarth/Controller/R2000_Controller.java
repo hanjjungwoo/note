@@ -17,7 +17,7 @@ public class R2000_Controller {
 	//http://localhost:6080/noteEarth/selectMyTemps.do
 	@RequestMapping("/selectMyTemps.do")
 	public String addNote(Model d) {
-		d.addAttribute("myTempsList", service.selectMyTemps("jeju@email.com"));
+		d.addAttribute("myTempsList", service.selectMyTemps("jeju@email.com"));		//메일주소 임시값
 		return "pageJsonReport";
 	}
 	

@@ -22,14 +22,21 @@
 	
 	<select id="selectNotes" parameterType="notes" resultType="notes">
 		SELECT n.* , totalPageCount FROM notes n,
-			(SELECT max(pageIndex) totalPageCount FROM pages
+			(SELECT max(pageIndex) totalPageCount FROM pages WHERE 
 				<if test='noteCode != null'>
-				WHERE notecode= #{noteCode} and
-				</if> GROUP BY NOTECODE
+				notecode= #{noteCode} and
+				</if>
+				<if test='email != null'>
+				email= #{email} and
+				</if>
+				<if test='noteTitle != null'>
+				noteTitle= #{noteTitle} and
+				</if>
+			1=1
 			 ) lp
 		WHERE 
 			<if test='noteCode != null'>
-			n.notecode= #{noteCode} and
+			notecode= #{noteCode} and
 			</if>
 			<if test='email != null'>
 			email= #{email} and
@@ -37,7 +44,7 @@
 			<if test='noteTitle != null'>
 			noteTitle= #{noteTitle} and
 			</if>
-			n.NOTECODE = lp.notecode ORDER BY n.NOTECODE
+			1=1
 	</select>
 	
 	<select id="selectPages" parameterType="pages" resultType="pages">

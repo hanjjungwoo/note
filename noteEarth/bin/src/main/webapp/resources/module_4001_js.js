@@ -1,7 +1,7 @@
 
 $(function() {
-$('#addNewNoteBtn').click(function(){
-	$.ajax({
+
+$.ajax({
 		url:"selectMyTemps.do",
 		type:"post",
 		dataType:"json",
@@ -27,8 +27,6 @@ $('#addNewNoteBtn').click(function(){
 				console.log(error)
 		}
 	})
-})
-
 	
 
 });

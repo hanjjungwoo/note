@@ -18,12 +18,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-<script src="${path}/resources/module_4000_noteListAjax.js"></script>
 </head>
 
 <body>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewNote" id="addNewNoteBtn">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewNote">
   새 노트 생성하기
 </button>
 
@@ -32,10 +31,9 @@
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
-
-
 
 <!-- Modal -->
 <div class="modal fade" id="addNewNote" tabindex="-1" aria-labelledby="addNewNoteLabel" aria-hidden="true">
@@ -48,18 +46,4 @@
   </div>
 </div>
 </body>
-<script>
-let noteCode = '32432432465541'
-var colorbynoteCode = function(noteCode){
-	console.log(noteCode.subString(3))
-}
-
-let randomBrightColor = () => {
-	  let color_r = Math.floor(Math.random() * 127 + 128).toString(16);
-	  let color_g = Math.floor(Math.random() * 127 + 128).toString(16);
-	  let color_b = Math.floor(Math.random() * 127 + 128).toString(16);
-	  return `#${color_r+color_g+color_b}`;
-	}
-
-</script>
 </html>

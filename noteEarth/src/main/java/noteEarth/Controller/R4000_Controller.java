@@ -24,7 +24,13 @@ public class R4000_Controller {
 	  return "/WEB-INF/Req4000/R4000_addnote.jsp"; 
 	  }
 	 
-	//  이거말고 인덱스에서 시작
+	@RequestMapping("/selectNoteList.do")
+	public String selectNoteList(Model d) {
+		Notes notes = new Notes();
+		notes.setEmail("jeju@email.com");		//메일주소 임시값
+		d.addAttribute("noteList",service.selectNoteList(notes));
+		return "pageJsonReport";
+	}
 	 
 	
 	//http://localhost:6080/noteEarth/createNote.do
