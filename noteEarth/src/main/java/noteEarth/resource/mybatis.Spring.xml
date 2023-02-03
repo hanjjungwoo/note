@@ -7,12 +7,14 @@
 	<typeAlias alias="notes" type="noteEarth.vo.Notes"/>	
 	<typeAlias alias="pages" type="noteEarth.vo.Pages"/>	
 	<typeAlias alias="pageTemplates" type="noteEarth.vo.PageTemplates"/>	
+	<typeAlias alias="member" type="noteEarth.vo.Member"/>	
 	</typeAliases>
 			
 
 	<mappers>
 			<mapper resource="noteEarth/resource/R4000_notesMapper.xml"/>
 			<mapper resource="noteEarth/resource/R2000_myTempsMapper.xml"/>		
+			<mapper resource="noteEarth/resource/R1000_Mapper.xml"/>		
 	</mappers>
 	
 	
