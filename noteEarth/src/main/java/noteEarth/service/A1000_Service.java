@@ -47,4 +47,9 @@ public class A1000_Service {
 	public void NE_SnsEmailPlus(Member upt) {
 		dao.NE_SnsEmailPlus(upt);
 	}
+	
+	public int NE_UpdateInfo(Member upt) {
+		 System.out.println("S:"+upt.getEmail());
+		return dao.NE_UpdateInfo(upt);
+	}
 }

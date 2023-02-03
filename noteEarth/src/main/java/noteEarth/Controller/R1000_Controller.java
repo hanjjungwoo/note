@@ -78,10 +78,21 @@ public class R1000_Controller {
 		return "WEB-INF\\Req1000\\SignIn.jsp";
 	}
 	
-	/*
-	 * @PostMapping("NE_UptMember.do") public String NE_UptMember(Member upt) {
-	 * 
-	 * }
-	 */
+	
+	 @PostMapping("NE_UpdateInfo.do")
+	 public String NE_UpdateInfo(Member upt,HttpServletRequest request,RedirectAttributes redirectAttributes) {
+		 System.out.println("C:"+upt.getEmail());
+		int SucUptInfo= service.NE_UpdateInfo(upt);
+		
+		if(SucUptInfo==1) {
+			HttpSession session =request.getSession();
+			session.removeAttribute("Login");
+			redirectAttributes.addFlashAttribute("NE_SnsEmailPlus",upt);
+			return "redirect:NE_Login.do";
+		}
+		else {
+		 return "WEB-INF\\Req1000\\Main.jsp";}
+	 }
+	 
 	
 }

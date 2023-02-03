@@ -16,6 +16,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">  
 <link rel="stylesheet" type="text/css" href="${path}/resources/style/top.css">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -36,10 +37,10 @@
 	      <div class="row">
 		      <div id="Top_Logo" class="col">
 		      <a href="${path }"><img src="https://img.freepik.com/premium-vector/earth-planet-isolated-white-flat-global-earth-icon-vector-simple-illustration-eco-environment_439591-339.jpg?w=360"></a>
-		      </div>
+		      </div>    
 		      <div class="col-10 position-relative TopDropdownMenu">
 		      	<h4 class="dropdown-toggle dropdown position-absolute top-50 start-50" data-bs-toggle="dropdown" aria-expanded="false">${notes.noteTitle}</h4>
-					<div class="dropdown-menu position-absolute top-50 start-50" aria-labelledby="dropdownMenuButton">
+					<div class="dropdown-menu position-absolute top-50 start-50" aria-labelledby="dropdownMenuButton" >
 				    	<a class="dropdown-item" href="${noteEarthurl }/insertPages.do?noteCode=${pages.noteCode }&tempCode=${pages.tempCode }&pageIndex=${pages.pageIndex}">현재 템플릿으로 새 페이지 생성</a>
 				    	<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addPageModal">다른 템플릿으로 새 페이지 생성 </a>
 				    	<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delPageModal">지금 페이지 삭제</a>
@@ -52,7 +53,7 @@
 		
 	        <div class="dropdown text-end">
 	          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-	            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+	            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135823.png" alt="mdo" width="32" height="32" class="rounded-circle">
 	          </a>
 	          <ul class="dropdown-menu text-small">
 	            <li><a class="dropdown-item" href="#">설정</a></li>
@@ -70,7 +71,7 @@
 </header>
 
 <!-- 회원정보 확인창 -->
-<!-- 회원가입 모달 -->
+
 <div class="modal fade" id="MemberInfoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
   <div class="row">
@@ -79,11 +80,12 @@
         <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">'${Login.name}'님 회원정보</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form class="MemInfo_Form" action="NE_UpdateInfo.do" method="post" onsubmit="return UpdateInfo()">
+      <form class="MemInfo_Form" action="NE_UpdateInfo.do" method="post">
       <div class="modal-body">
       <label for="MemInfo_name" class="form-label">이름</label>
 		  <div class="mb-3">
 		    <input name="name" type="text" class="form-control"  id="MemInfo_name" value="${Login.name}" readonly>    
+		  	<input name="rrn" type="hidden" value="${Login.rrn }"/>
 		  </div>
 		  
 		  <hr>
@@ -91,18 +93,18 @@
 		  <label for="MemInfo_email" class="form-label">이메일</label>
 		  <div class="mb-3">   
 		    <input name="email" type="email" class="form-control" id="MemInfo_email"  value="${Login.email}"  required>
-		    <div class="invalid-feedback" id="emailfeedback">이메일양식이 맞지 않습니다.</div>
+		    <div class="invalid-feedback" id="uptemailfeedback">이메일양식이 맞지 않습니다.</div>
 		  </div>
 		  <div class="d-flex justify-content-left" id="CheckEmail_Wrap">
-		  	<button type="button" class="btn btn-primary " id="CheckEmailBtn">이메일 인증</button>
-		  	<input type="text" class="form-control w-25" id="checkEmailCode"/>
+		  	<button type="button" class="btn btn-primary " id="CheckUptEmailBtn">이메일 인증</button>
+		  	<input type="text" class="form-control w-25" id="checkUptEmailCode"/>
 		  </div>
 		  <label for="MemInfo_SNSemail" class="form-label">연동 계정</label>
 		  <div class="mb-3"> 
 		  	<label for="" class="form-label">카카오</label>  
-		    <input name="email" type="email" class="form-control" id="MemInfo_SNSemail1"  value="${Login.kakaoemail }" placeholder="카카오연동이메일" readonly>
+		    <input name="kakaoemail" type="email" class="form-control" id="MemInfo_SNSemail1"  value="${Login.kakaoemail }" placeholder="카카오연동이메일" readonly>
 		    <label for="" class="form-label">구글</label> 
-		    <input name="email" type="email" class="form-control" id="MemInfo_SNSemail2"  value="${Login.googleemail }" placeholder="구글이메일" readonly>
+		    <input name="googleemail" type="email" class="form-control" id="MemInfo_SNSemail2"  value="${Login.googleemail }" placeholder="구글이메일" readonly>
 		   
 		  </div>
 		  
@@ -111,7 +113,7 @@
 		    <label for="MemInfo_password1" class="form-label " >비밀번호</label>
 		    <div id="passHelp" class="form-text UptPass">숫자/영문/특수문자 중 2가지 이상 혼합(8자리 이상 16자리 이하)</div>
 		    <input name=password type="password" class="form-control" id="MemInfo_password1" aria-describedby="passHelp" value="${Login.password }" required>
-		  	<div class="invalid-feedback" id="pass1feedback"></div>
+		  	<div class="invalid-feedback" id="uptpass1feedback"></div>
 		  </div>
 		  <div class="mb-3">
 		    <label for="MemInfo_password2" class="form-label UptPass" >비밀번호 확인</label>
@@ -122,8 +124,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">창닫기</button>
-        <button type="submit" class="btn btn-success" id="ConnectSNS">SNS계정연동</button>
-        <button type="submit" class="btn btn-primary">수정하기</button>
+        <button type="button" class="btn btn-success" id="ConnectSNS">SNS계정연동</button>
+        <button type="button" class="btn btn-primary" id="UptUserInfoBtn">수정하기</button>
       </div>
      </form>
     </div>
@@ -152,47 +154,17 @@
   
   
   
-  
-  
+ <%--EL태그써야하면 여기 --%>
+<script>
+var SessionEmail = '${Login.email}'; //세션처리된 이메일
+var SessionPass = '${Login.password}'; //세션처리된 비밀번호
+
+
+emailjs.init("mzN3R1G0GZQBRs8hh");
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="${path}/resources/js/Top.js"></script> <%--el태그안써도되는것만 여기 --%>
-<%--EL태그써야하면 밑에 --%>
-<script>
-
-var Upt_Email=true;
-var Upt_Password=true;
 
 
-	$('#MemInfo_email').keyup(function(){
-		 var InfoEmail = $(this).val(); //회원정보창에 적혀져있는 이메일
-		 var SessionEmail = '${Login.email}'; //세션처리된 이메일
-		if(InfoEmail!=SessionEmail){
-			$("#CheckEmailBtn").slideDown('slow')
-			$("#checkEmailCode").slideDown('slow')
-			Upt_Email=false;
-			
-		}else{
-			$("#CheckEmailBtn").slideUp('slow')
-			$("#checkEmailCode").slideUp('slow')
-			Upt_Email=true;
-		}
-	})
-	
-	$('#MemInfo_password1').keyup(function(){
-		var InfoPass = $(this).val()
-		var SessionPass = '${Login.password}';
-		if(InfoPass!=SessionPass){
-			$('.UptPass').slideDown('slow')
-			Upt_Password=false;
-		}else{
-			$('.UptPass').slideUp('slow')
-			Upt_Password=true;
-		}
-	})
-	
-	
-	
-})
-</script>
 </body>
 </html>

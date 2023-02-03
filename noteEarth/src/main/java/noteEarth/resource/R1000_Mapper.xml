@@ -51,7 +51,15 @@
 			<if test="googleemail!=null">
 			SET googleemail = #{googleemail}
     		WHERE email = #{googleemail}
-			</if>
-			
+			</if>		
+    	</update>
+    	
+    	<!-- 유저정보 수정하기 -->
+    	<update id="NE_UpdateInfo" parameterType="member">
+    		update N_E_MEMBER
+    		set email = #{email},
+    		 password = #{password}
+    		where name=#{name} and rrn=#{rrn}
+    		    
     	</update>
     </mapper>

@@ -12,5 +12,6 @@ public interface A1000_Dao {
 	public int NE_SignUp(Member ins);
 	public Member NE_Login(Member log);
 	public void NE_SnsEmailPlus(Member upt);
+	public int NE_UpdateInfo(Member upt);
 }
 

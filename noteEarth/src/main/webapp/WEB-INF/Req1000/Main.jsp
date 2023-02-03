@@ -26,6 +26,6 @@
 
 	<h1>메인화면</h1>
   
-<script src="${path}/resources/nosion/js/"></script>
+
 </body>
 </html>
