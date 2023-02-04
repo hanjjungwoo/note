@@ -24,7 +24,6 @@ public class R4000_Service {
 		String noteCode = dao4000.createNotesSeq();
 		newNote.setNoteCode(noteCode);
 		if(newNote.getNoteTitle().length()<1) {newNote.setNoteTitle("untitled");}
-		if(newNote.getEmail()==null) {newNote.setEmail("jeju@email.com");}	//임시값! 세션에서 받아오는걸로 수정필요
 		dao4000.insertNotes(newNote);
 		
 		String pageCode=dao4000.createPagesSeq();

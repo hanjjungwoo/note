@@ -1,5 +1,8 @@
 package noteEarth.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import noteEarth.service.R4000_Service;
+import noteEarth.vo.Member;
 import noteEarth.vo.Notes;
 import noteEarth.vo.Pages;
 
@@ -20,31 +24,29 @@ public class R4000_Controller {
 	
 	  //http://localhost:6080/noteEarth/addNote.do
 	  
-	  @RequestMapping("/addNote.do") public String addNote() {
+	 @RequestMapping("/addNote.do") public String addNote() {
 	  return "/WEB-INF/Req4000/R4000_addnote.jsp"; 
 	  }
 	 
 	@RequestMapping("/selectNoteList.do")
-	public String selectNoteList(Model d) {
+	public String selectNoteList(Model d,HttpServletRequest request) {
+		HttpSession session =request.getSession();
 		Notes notes = new Notes();
-		notes.setEmail("jeju@email.com");		//메일주소 임시값
+		notes.setEmail(((Member) session.getAttribute("Login")).getEmail());		//메일주소 임시값
 		d.addAttribute("noteList",service.selectNoteList(notes));
-		return "pageJsonReport";
+		return "/WEB-INF/Req4000/R4000_noteList.jsp";	
 	}
 
 	 
 	
 	//http://localhost:6080/noteEarth/createNote.do
 	@RequestMapping("/createNote.do")
-	public String createNotes(Notes newNote,@RequestParam("tempCode") String tempCode,Model d ) {
-		Pages firstPageOfNewNote = null;
-		//이메일이랑 노트 타이틀 받아서 전달
-		if(!tempCode.equals("")||tempCode!=null) {
-			Pages newPages = new Pages();
-			newPages.setTempCode(tempCode);
-			firstPageOfNewNote = service.createNotes(newNote, newPages);
-		}
-		return "redirect:/openNote.do?noteCode="+firstPageOfNewNote.getNoteCode()+"&pageIndex=1";
+	public String createNotes(Notes newNote,Pages newPage,Model d,HttpServletRequest request) {
+		HttpSession session =request.getSession();
+		newNote.setEmail(((Member) session.getAttribute("Login")).getEmail());
+		newPage = service.createNotes(newNote, newPage);
+		
+		return "redirect:/openNote.do?noteCode="+newPage.getNoteCode()+"&pageIndex=1";
 	}
 	
 	@RequestMapping("/openNote.do")

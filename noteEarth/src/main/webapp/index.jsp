@@ -22,10 +22,23 @@
 </head>
 
 <body>
-
+<h1>로그인 했으면 노트 리스트로</h1>
+<h1>안했으면 로그인창으로 자동 이동하게</h1>
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewNote" id="addNewNoteBtn">
   새 노트 생성하기
 </button>
+<script>
+
+<c:if test="${not empty Login.name}">
+location.href="${path}/selectNoteList.do"
+</c:if>
+<c:if test="${empty Login.name}">
+location.href="${path}/NE_SignIn.do"
+</c:if>
+
+</script>
+
+
 
 <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">

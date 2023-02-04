@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${Login.name }의 노트</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -19,6 +19,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 <style>
+
 .cardDeck div{
 	margin:0.5em;
 	min-width: 10em;
@@ -27,16 +28,17 @@
 
 
 <script>
-function getColorByNoteCode(code1,code2,code3,self){
-	  let color_r = Math.floor(code1/100 * 127 +128).toString(16);
-	  let color_g = Math.floor(code2/100 * 127 + 128).toString(16);
-	  let color_b = Math.floor(code3/100 * 127 + 128).toString(16);
-	  console.log("color_r"+color_r)
-	  console.log("color_g"+color_g)
-	  console.log("color_b"+color_b)
-	  let colorCode = '#'+color_r+color_g+color_b;
-	  $(self).css("background",colorCode)
-	  }
+$(function() {
+
+	$('.card').each(function(index,eachCard) {
+		let noteCode = $(eachCard).attr('id')
+		let color_r = Math.floor(noteCode.substring(16,18)/100 * 127 +128).toString(16);
+		let color_g = Math.floor(noteCode.substring(10,12)/100 * 127 +128).toString(16);
+		let color_b = Math.floor(noteCode.substring(7,9)/100 * 127 +128).toString(16);
+		let colorCode = '#'+color_r+color_g+color_b;
+		$(eachCard).css("background",colorCode)
+	})
+})
 </script>
 
 
@@ -48,11 +50,11 @@ function getColorByNoteCode(code1,code2,code3,self){
   새 노트 생성하기
 </button>
 
-<div class="cardDeck row row-cols-1 row-cols-sm-3 row-cols-lg-4 ">
+<div class="cardDeck justify-content-center row row-cols-1 row-cols-sm-3 row-cols-lg-4 ">
 
 <c:forEach items="${noteList }" var="each">
-<div class="d-flex card col" style="cursor:pointer;" onclick="location.href='/noteEarth/openNote.do?noteCode=${each.noteCode }&pageIndex=1'">
-  <div class="card-body" onmouseenter="getColorByNoteCode(${fn:substring(each.noteCode,16,18) },${fn:substring(each.noteCode,10,12) },${fn:substring(each.noteCode,7,9) },this)">
+<div class="d-flex card col" id="${each.noteCode }" style="cursor:pointer;" onclick="location.href='/noteEarth/openNote.do?noteCode=${each.noteCode }&pageIndex=1'">
+  <div class="card-body">
     <h5 class="card-title">${each.noteTitle }</h5>
     <p class="card-text" >
     ${fn:substring(each.noteCode,0,4) }/${fn:substring(each.noteCode,4,6) }/${fn:substring(each.noteCode,6,8) }

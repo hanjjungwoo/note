@@ -71,7 +71,7 @@ $(function() {
 	<h4 class="dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-expanded="false">${notes.noteTitle}</h4>
 	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
     	<a class="dropdown-item" href="${noteEarthurl }/insertPages.do?noteCode=${pages.noteCode }&tempCode=${pages.tempCode }&pageIndex=${pages.pageIndex}">현재 템플릿으로 새 페이지 생성</a>
-    	<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addPageModal">다른 템플릿으로 새 페이지 생성 </a>
+    	<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addPageModal" id="addNewNoteBtn">다른 템플릿으로 새 페이지 생성 </a>
     	<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delPageModal">지금 페이지 삭제</a>
   </div></div>
 <div class="row righter">

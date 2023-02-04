@@ -24,7 +24,7 @@
 		SELECT n.* , totalPageCount FROM notes n,
 			(SELECT notecode , max(pageIndex) totalPageCount FROM pages
 				<if test='noteCode != null'>
-				WHERE notecode= #{noteCode} and
+				WHERE notecode= #{noteCode}
 				</if> GROUP BY NOTECODE
 			 ) lp
 		WHERE 
