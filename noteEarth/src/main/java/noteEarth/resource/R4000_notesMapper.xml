@@ -22,7 +22,7 @@
 	
 	<select id="selectNotes" parameterType="notes" resultType="notes">
 		SELECT n.* , totalPageCount FROM notes n,
-			(SELECT max(pageIndex) totalPageCount FROM pages
+			(SELECT notecode , max(pageIndex) totalPageCount FROM pages
 				<if test='noteCode != null'>
 				WHERE notecode= #{noteCode} and
 				</if> GROUP BY NOTECODE

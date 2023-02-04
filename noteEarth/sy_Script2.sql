@@ -29,3 +29,5 @@ WHERE n.EMAIL ='jeju@email.com' AND
 n.NOTECODE = lp.notecode
 ORDER BY n.NOTECODE ;
 ;
+
+INSERT INTO n_e_member (email,name,password) values('jeju@email.com','김제주','1234');
