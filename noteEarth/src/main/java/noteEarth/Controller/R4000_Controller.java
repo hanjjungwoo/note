@@ -31,6 +31,7 @@ public class R4000_Controller {
 		d.addAttribute("noteList",service.selectNoteList(notes));
 		return "pageJsonReport";
 	}
+
 	 
 	
 	//http://localhost:6080/noteEarth/createNote.do
