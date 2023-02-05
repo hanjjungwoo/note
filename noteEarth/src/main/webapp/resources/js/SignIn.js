@@ -254,62 +254,6 @@ $('#SNSLoginbnt').click(function(){
 	  }
   })
 
-/*카카오 로그인 연동*/
-
-var connected_at="";
-var kakaoemail="";
-//카카오로그인
-Kakao.init('397291d0416daa0cdb592b95e6b9c7f7'); //발급받은 키 중 javascript키를 사용해준다.
-function kakaoLogin(){
-	console.log(Kakao.isInitialized()); // sdk초기화여부판단
-    Kakao.Auth.login({
-      scope:'profile_nickname,account_email',
-      success: function (response) {
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (response) {
-        	  console.log(response)
-        	  connected_at = response.connected_at
-        	  kakao_account = response.kakao_account
-        	  if(typeof kakao_account != 'undefined'){
-            	  kakaoemail = kakao_account.email;         	
-              }
-        	  	SNSResult('kakao',kakaoemail)  
-          },
-          fail: function (error) {
-            console.log(error)
-          },
-        })
-      },
-      fail: function (error) {
-        console.log(error)
-      },
-    })
-  }	
-  
-  
-
-  
-/*구글 로그인*/
-     function handleCredentialResponse(response) {
-     const responsePayload = decodeJwtResponse(response.credential);
-
-     //console.log("ID: " + responsePayload.sub);
-     //console.log('Full Name: ' + responsePayload.name);
-     //console.log('Given Name: ' + responsePayload.given_name);
-     //console.log('Family Name: ' + responsePayload.family_name);
-     //console.log("Image URL: " + responsePayload.picture);
-     console.log("Email: " + responsePayload.email);
-     SNSResult('google',responsePayload.email)
-  }
-    function decodeJwtResponse (token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-    return JSON.parse(jsonPayload);
-};
 
 //sns로그인 시도 존재유무 확인
 function SNSResult(platforms,snsemail){

@@ -21,10 +21,14 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		
-});
+
+var Loginemail = '${Login.email}' //js파일에서쓸 세션이메일
+
+
+
 			
 	
 </script>
@@ -57,9 +61,9 @@
 	          </a>
 	          <ul class="dropdown-menu text-small">
 	            <li><a class="dropdown-item" href="#">설정</a></li>
-	            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#MemberInfoModal">회원정보</a></li>
+	            <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#MemberInfoModal" onclick="loadMemInfo()">회원정보</a></li>
 	            <li><hr class="dropdown-divider"></li>
-	            <li><a class="dropdown-item" href="NE_Logout.do">로그아웃</a></li>
+	            <li><a class="dropdown-item" onclick="kakaoLogOut()">로그아웃</a></li>
 	          </ul>
 	        </div>
 	    
@@ -84,15 +88,15 @@
       <div class="modal-body">
       <label for="MemInfo_name" class="form-label">이름</label>
 		  <div class="mb-3">
-		    <input name="name" type="text" class="form-control"  id="MemInfo_name" value="${Login.name}" readonly>    
-		  	<input name="rrn" type="hidden" value="${Login.rrn }"/>
+		    <input name="name" type="text" class="form-control"  id="MemInfo_name" value="" readonly>    
+		  	<input name="rrn" type="hidden" value=""/>
 		  </div>
 		  
 		  <hr>
 		  
 		  <label for="MemInfo_email" class="form-label">이메일</label>
 		  <div class="mb-3">   
-		    <input name="email" type="email" class="form-control" id="MemInfo_email"  value="${Login.email}"  required>
+		    <input name="email" type="email" class="form-control" id="MemInfo_email"  value=""  required>
 		    <div class="invalid-feedback" id="uptemailfeedback">이메일양식이 맞지 않습니다.</div>
 		  </div>
 		  <div class="d-flex justify-content-left" id="CheckEmail_Wrap">
@@ -102,9 +106,9 @@
 		  <label for="MemInfo_SNSemail" class="form-label">연동 계정</label>
 		  <div class="mb-3"> 
 		  	<label for="" class="form-label">카카오</label>  
-		    <input name="kakaoemail" type="email" class="form-control" id="MemInfo_SNSemail1"  value="${Login.kakaoemail }" placeholder="카카오연동이메일" readonly>
+		    <input name="kakaoemail" type="email" class="form-control" id="MemInfo_SNSemail1"  value="" placeholder="카카오연동이메일" readonly>
 		    <label for="" class="form-label">구글</label> 
-		    <input name="googleemail" type="email" class="form-control" id="MemInfo_SNSemail2"  value="${Login.googleemail }" placeholder="구글이메일" readonly>
+		    <input name="googleemail" type="email" class="form-control" id="MemInfo_SNSemail2"  value="" placeholder="구글이메일" readonly>
 		   
 		  </div>
 		  
@@ -112,7 +116,7 @@
 		  <div class="mb-3">
 		    <label for="MemInfo_password1" class="form-label " >비밀번호</label>
 		    <div id="passHelp" class="form-text UptPass">숫자/영문/특수문자 중 2가지 이상 혼합(8자리 이상 16자리 이하)</div>
-		    <input name=password type="password" class="form-control" id="MemInfo_password1" aria-describedby="passHelp" value="${Login.password }" required>
+		    <input name=password type="password" class="form-control" id="MemInfo_password1" aria-describedby="passHelp" value="" required>
 		  	<div class="invalid-feedback" id="uptpass1feedback"></div>
 		  </div>
 		  <div class="mb-3">
@@ -137,9 +141,13 @@
       <div class="modal-body">
       	<div>
       	<h4 style="text-align:center;">구글연동</h4>
-	       <img src="${path}/resources/img/btn_google_signin_light_normal_web.png">
+	       <div id="g_id_onload"
+		     data-client_id="480388421855-dkukvie0s0b8q34rtt7ae5kmdfrh59ug.apps.googleusercontent.com"
+		     data-callback="handleCredentialResponse">
+			</div>
+			<div class="g_id_signin" data-type="outline" data-size="large" ></div>
 	    <h4 style="text-align:center;">카카오연동</h4>
-		   <img src="${path}/resources/img/kakao_login_medium_narrow.png">
+		   <img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin('after')">
 	   </div>
       </div>
       <div class="modal-footer">

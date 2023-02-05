@@ -12,31 +12,14 @@
 <%@include file="Top.jsp" %> <%-- TOP호출 --%>
 <meta charset="UTF-8">
 <title>노트어스</title>
-<style>
-
-</style>
 <link rel="stylesheet" type="text/css" href="${path}/resources/style/signin.css">
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-<script>
-        function handleCredentialResponse(response) {
-          console.log("Encoded JWT ID token: " + response.credential);
-        }
-        window.onload = function () {
-          google.accounts.id.initialize({
-            client_id: "480388421855-dkukvie0s0b8q34rtt7ae5kmdfrh59ug.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "outline", size: "large" }  // customization attributes
-          );
-          google.accounts.id.prompt(); // also display the One Tap dialog
-        }
-    </script>
-
 
 <script type="text/javascript">
+
+/*구글 로그인(앞쪽 스크립트단에 줘야해서 현재위치에 넣음.)*/
+
+
+
 	$(document).ready(function(){
 	var CheckSignUp = '${CheckSignUp}'
 		if(CheckSignUp!=""){
@@ -80,9 +63,13 @@
     <button class="w-100 btn btn-lg " type="button" id="SignUpBtn" 
     	data-bs-toggle="modal" data-bs-target="#SignUpModal">회원가입</button>
     <div class="d-flex SnsWrap">
-     <div id="buttonDiv"></div> 
+    <div id="g_id_onload"
+     data-client_id="480388421855-dkukvie0s0b8q34rtt7ae5kmdfrh59ug.apps.googleusercontent.com"
+     data-callback="handleCredentialResponse1">
+	</div>
+	<div class="g_id_signin" data-type="outline" data-size="large" ></div>
      <input type="hidden" name="snsemail">
-	<img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin()">
+	<img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin('befor')">
     </div>
     
   </form>

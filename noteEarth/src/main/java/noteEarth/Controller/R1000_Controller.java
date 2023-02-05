@@ -57,7 +57,8 @@ public class R1000_Controller {
 				 return "WEB-INF\\Req1000\\Main.jsp";
 			//일치하는놈이없으면
 			}else{
-				d.addAttribute("CheckLogin","일지하는 회원이 없습니다.");
+				if(session.getAttribute("Login")==null) {
+				d.addAttribute("CheckLogin","일지하는 회원이 없습니다.");}
 				return "WEB-INF\\Req1000\\SignIn.jsp";
 			}	
 		}		
@@ -93,6 +94,7 @@ public class R1000_Controller {
 		else {
 		 return "WEB-INF\\Req1000\\Main.jsp";}
 	 }
+	 
 	 
 	
 }

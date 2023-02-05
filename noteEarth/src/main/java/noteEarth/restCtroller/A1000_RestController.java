@@ -1,6 +1,7 @@
 package noteEarth.restCtroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,6 +36,21 @@ public class A1000_RestController {
 	public String NE_CheckKEmail(Member sch) {
 		Gson g = new Gson();
 		return g.toJson(service.NE_CheckKEmail(sch));
+	}
+	
+	@PostMapping(value="NE_LinkSns.do", produces="text/plain;charset=UTF-8")
+	 public String NE_LinkSns(Member upt) {
+		System.out.println(upt.getEmail());
+		System.out.println(upt.getGoogleemail());
+		
+		 int sucNE_LinkSns = service.NE_LinkSns(upt);
+		 return Integer.toString(sucNE_LinkSns) ;
+	 }
+	
+	@PostMapping(value="NE_loadMemInfo.do", produces="text/plain;charset=UTF-8")
+	public String loadMemInfo(Member log) {
+		Gson g = new Gson();
+		return g.toJson(service.NE_Login(log));
 	}
 	
 }

@@ -59,7 +59,20 @@
     		update N_E_MEMBER
     		set email = #{email},
     		 password = #{password}
-    		where name=#{name} and rrn=#{rrn}
-    		    
+    		where name=#{name} and rrn=#{rrn}		    
+    	</update>
+    	
+    	<!-- 유저정보창에서 sns계정업데이트 -->
+    	<update id="NE_LinkSns" parameterType="member">
+    		UPDATE N_E_MEMBER
+    		<if test="googleemail!=null">
+			SET GOOGLEEMAIL = #{googleemail}
+			WHERE email = #{email}
+			</if>
+			<if test="kakaoemail!=null">
+			SET kakaoemail = #{kakaoemail}
+			WHERE email = #{email}
+			</if>
+			
     	</update>
     </mapper>

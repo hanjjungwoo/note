@@ -13,6 +13,29 @@ $('body').css("padding-top",TopHighVal);
 		$('.SNSModalContent').slideUp()
 });
 
+function loadMemInfo(){
+	console.log("email="+Loginemail)
+	$.ajax({
+			url:"NE_loadMemInfo.do",
+			type:"post",
+			data:"email="+Loginemail,
+			dataType:"json",
+			success:function(data){
+				$('.MemInfo_Form [name=name]').val(data.name);
+				$('.MemInfo_Form [name=rrn]').val(data.rrn);
+				$('.MemInfo_Form [name=email]').val(data.email);
+				$('.MemInfo_Form [name=kakaoemail]').val(data.kakaoemail);
+				$('.MemInfo_Form [name=googleemail]').val(data.googleemail);
+				$('.MemInfo_Form [name=password]').val(data.password);
+			},
+			error:function(xhr,status,error){
+                  console.log(xhr)
+                  console.log(status)
+                  console.log(error)
+            }
+		})
+}
+
 
 /*--------------------------회원수정-------------------------*/
 var Upt_Email=true;
@@ -217,3 +240,102 @@ $('#ConnectSNS').click(function(){
 	})
 })
 
+function handleCredentialResponse(response) {
+	const responsePayload = decodeJwtResponse(response.credential);
+	console.log("Email: " + responsePayload.email);
+	if(Loginemail==''){SNSResult('google',responsePayload.email)} //로그인전 연동(SignIn.js파일에 있음)
+	else{LinkSns('google',responsePayload.email)}// 로그인 후 연동코드(현재 파일에 있음)
+}
+
+
+function decodeJwtResponse (token) {
+	var base64Url = token.split('.')[1];
+	var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+	var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+	   return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+	}).join(''));
+	return JSON.parse(jsonPayload);
+};
+
+var connected_at="";
+var kakaoemail="";
+//카카오로그인
+Kakao.init('397291d0416daa0cdb592b95e6b9c7f7'); //발급받은 키 중 javascript키를 사용해준다.
+function kakaoLogin(method){
+	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+    Kakao.Auth.login({
+      scope:'profile_nickname,account_email',
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  console.log(response)
+        	  connected_at = response.connected_at
+        	  kakao_account = response.kakao_account
+        	  if(typeof kakao_account != 'undefined'){
+            	  kakaoemail = kakao_account.email;         	
+              }
+              if(method=='befor'){SNSResult('kakao',kakaoemail)}
+              else{LinkSns('kakao',kakaoemail)}
+        	  	 
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }	
+//회원정보창에서 계정 연동
+function LinkSns(platforms,email){
+	var linkemailval;
+	var basicemail = $('.MemInfo_Form [name=email]').val()
+	if(platforms=='google'){
+		linkemail = $('.MemInfo_Form [name=googleemail]')
+	}else{
+		linkemail = $('.MemInfo_Form [name=kakaoemail]')
+	}
+	
+	if(linkemailval.val()==''){
+		console.log("LinkSns.do?"+platforms+"email="+email+"&email="+basicemail)
+		$.ajax({
+			url:"NE_LinkSns.do",
+			type:"post",
+			data:platforms+"email="+email+"&email="+basicemail,
+			dataType:"json",
+			success:function(data){
+				alert("연동 완료되었습니다. 이후 로그인 창에서도 sns로그인을 통해 로그인이 가능합니다.")
+				linkemail.val(email)
+			},
+			error:function(xhr,status,error){
+                  console.log(xhr)
+                  console.log(status)
+                  console.log(error)
+            }
+		})
+	}else{
+		alert('이미 연동이 되어있는 메일이 있습니다.')
+	}
+}
+
+// 로그아웃
+function kakaoLogOut(){
+	
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        	
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+    location.href="NE_Logout.do"
+  }  
