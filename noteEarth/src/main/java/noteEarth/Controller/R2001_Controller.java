@@ -23,10 +23,10 @@ public class R2001_Controller {
 		d.addAttribute("templist", service.getPageTempList(sch));
 		return "WEB-INF\\Req2000\\R2001_search.jsp";
 	}
-	@GetMapping("/template.do")
+	@GetMapping("/template.do")		// 템플릿 상세페이지
 	public String getTemplate(@RequestParam("tempCode") String tempCode, Model d) {
 		service.getTemplate(tempCode);
-		d.addAttribute("pageTemplates",service.getTemplate(tempCode));
+		d.addAttribute("temp",service.getTemplate(tempCode));
 		return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
 }

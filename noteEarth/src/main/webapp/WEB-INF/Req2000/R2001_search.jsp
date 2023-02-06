@@ -93,16 +93,12 @@ header .righter{width: 200px;text-align:right;}
 	padding-top:2%;
 	display:flex;
 	justify-content: center;
-	gap: 20px;
+	gap: 100px;
 }
 .temp_img{
-	border: 5px solid #212529;
-	width: 300px;
-	height: 300px;
-	margin-top:50px;
-	margin-right: 100px;
-	text-align: center;
-	line-height: 300px;
+width: 300px;
+height: 300px;
+text-align: center;
 }
 .temp_preImg{
 	width: 300px;
@@ -132,10 +128,14 @@ header .righter{width: 200px;text-align:right;}
 				}
 			}
 		}) */
+		var tempCodeVal=$("#input-hidden").val();
+		console.log(tempCodeVal)
 	});
+	
  	function goDetail(tempCode){            
-  		location.href="${path}/template.do?tempCode="+tempCode          
+ 		location.href="${path}/template.do?tempCode="+tempCode      
   	}
+
 </script>
 </head>
 <header>
@@ -182,12 +182,12 @@ header .righter{width: 200px;text-align:right;}
 	</form>
 	<div class="shop-temp-contain">
 		<c:forEach var="pageTemplates" items="${templist }">
-	    	<div onclick="goDetail(${pageTemplates.tempCode})">
+	    	<div ondblclick="goDetail(${pageTemplates.tempCode })">
     			<div class="temp_img"><img class="temp_preImg" src="${pageTemplates.thumbnail }"></div>
-			    	<div class="temp_header">
-			    	<span>${pageTemplates.tempTitle }</span><span style="padding-right: 103px;">${pageTemplates.sales }</span>
-			    	<input type="hidden" value="${pageTemplates.tempCode }"></input>
-		    	</div>
+		    	<div class="temp_header">
+		    		<span>${pageTemplates.tempTitle }</span><span>${pageTemplates.sales }</span>
+				</div>
+				<input type="hidden" value="${pageTemplates.tempCode }" id="input-hidden"></input>
 		    </div>
 		</c:forEach>
 	</div>

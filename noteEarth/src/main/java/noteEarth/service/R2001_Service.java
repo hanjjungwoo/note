@@ -17,7 +17,7 @@ public class R2001_Service {
 		if(sch.getTempTitle()==null) sch.setTempTitle("");
 		return dao.getPageTempList(sch);
 	}
-	public String getTemplate(String tempCode) {
+	public PageTemplates getTemplate(String tempCode) {
 		return dao.getTemplate(tempCode);
 	}
 }

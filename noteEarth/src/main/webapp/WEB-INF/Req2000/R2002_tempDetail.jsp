@@ -13,11 +13,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
-<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
-<style>
-	td{text-align:center;}
-</style>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" ></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <style>
     body {
       min-height: 100vh;
@@ -39,14 +38,30 @@
       -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
+    td{
+    	text-align:center;
+    }
+	.temp_img{
+		width: 300px;
+		height: 300px;
+		text-align: center;
+	}
+	.temp_preImg{
+		width: 300px;
+		height: 300px;
+	}
+	.temp-flex-contain{
+		display:flex;
+		gap: 50px;
+	}
+	.datail-btn{
+		display: block;
+		width: 100%;
+	}
+	.datail-btn-contain{
+		padding-top: 5%;
+	}
   </style>
-
-<script src="${path}/a00_com/jquery.min.js"></script>
-<script src="${path}/a00_com/popper.min.js"></script>
-<script src="${path}/a00_com/bootstrap.min.js"></script>
-<script src="${path}/a00_com/jquery-ui.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		<%-- 
@@ -62,83 +77,24 @@
 <body>
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
-        <h4 class="mb-3">게시판 상세</h4>
+        <h4 class="mb-3">템플릿</h4>
         <form method="post" class="validation-form" novalidate>
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label for="no">글번호</label>
-              <input type="text" name="no" class="form-control" id="no" 
-              		value="${board.no}" readonly required>
-              <div class="invalid-feedback">
-                입력해주세요.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="refno">답글번호</label>            
-              <input type="text" name="refno" class="form-control" id="no" 
-              		value="${board.refno}" readonly required>
-              <div class="invalid-feedback">
-                입력해주세요.
-              </div>
-            </div>
-          </div>  
-          <div class="mb-3">
-            <label for="subject">제목</label>
-            <input name="subject" value="${board.subject}" type="text" class="form-control  ckValid" id="subject" placeholder="제목 입력" required>
-            <div class="invalid-feedback">
-              제목을 입력해주세요.
-	           </div>
-		  </div>
-          <div class="row">      
-	          <div class="col-md-6 mb-3">
-	            <label for="writer">작성자</label>
-	            <input type="text" name="writer"
-	            	 value="${board.writer}"  class="form-control ckValid" id="writer" placeholder="작성자를 입력" required>
-	            <div class="invalid-feedback">
-	              작성자를 입력해주세요.
-	            </div>
-	          </div> 
-	          <div class="col-md-6 mb-3">
-	            <label for="readcnt">조회수</label>
-	            <input type="text" name="readcnt"
-	            	 value="${board.readcnt}" readonly class="form-control ckValid" id="readcnt"  required>
-	            <div class="invalid-feedback">
-	              입력해주세요.
-	            </div>
-	          </div> 	          
-          </div> 
-          <div class="row">
-            <div class="col-md-6 mb-3">
-              <label >등록일</label>
-             
-              <input type="text"  class="form-control" 
-              		value='<fmt:formatDate pattern='yyyy-MM-dd' value="${board.regdte}"/>' >
-              <div class="invalid-feedback">
-                입력해주세요.
-              </div>
-            </div>
-            <div class="col-md-6 mb-3">
-              <label >수정일</label>
-             
-              <input type="text"  class="form-control"  
-              		value='<fmt:formatDate pattern='yyyy-MM-dd'  value="${board.uptdte}"/>'  >
-              <div class="invalid-feedback">
-                입력해주세요.
-              </div>
-            </div>
-          </div> 
-        
-          <div class="mb-3">
-            <label for="content">내용</label>
-            <textarea name="content"  class="form-control  ckValid" id="content" placeholder="내용 입력" required rows="5" >${board.content}</textarea>
-            <div class="invalid-feedback">
-              내용를 입력해주세요.
-            </div>
-          </div> 
-          <div class="mb-4"></div>
-          <button id="regBtn" class="btn btn-warning btn-lg btn-block" type="button">게시물 수정</button>
-          <button id="delBtn" class="btn btn-danger btn-lg btn-block" type="button">게시물 삭제</button>
-          <button id="goMain" class="btn btn-info   btn-lg btn-block" type="button">조회 화면</button>
+          <div class="temp-flex-contain">
+          	<div class="temp-flex-contain-left">
+          		<div class="temp_img"><img class="temp_preImg" src="${temp.thumbnail }"></div>
+          	</div>
+          	<div class="temp-flex-contain-right">
+          		<p><span>템플릿 코드 : </span>${temp.tempCode }</p>
+          		<p><span>템플릿 이름 : </span>${temp.tempTitle }</p>
+          		<p><span>템플릿 가격 : </span>${temp.price }</p>
+          		<p><span>템플릿 종류 : </span>${temp.category }</p>
+          		<p><span>판 매 량 : </span>${temp.sales }</p>
+          	</div>
+          </div>
+          <div class="datail-btn-contain">
+			<button id="delBtn" class="btn btn-outline-primary btn-lg btn-block datail-btn" type="button" style="margin-bottom: 5%;">템플릿 구매</button>
+          	<button id="goMain" class="btn btn-secondary  btn-lg btn-block datail-btn" type="button">이전 화면</button>
+          </div>
         </form>
       </div>
     </div>

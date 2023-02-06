@@ -8,4 +8,8 @@
 		SELECT * FROM PAGETEMPLATES
 		WHERE tempTitle LIKE '%' ||#{tempTitle}||'%'
 	</select>
+  	<select id="getTemplate" resultType="pageTemplates" parameterType="pageTemplates">
+       		SELECT * FROM PAGETEMPLATES
+			WHERE tempCode= #{tempCode}
+  	</select>
 </mapper>
