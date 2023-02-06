@@ -18,6 +18,10 @@
 <link rel="stylesheet" href="../jw_style.css">
 <link rel="stylesheet" href="./reset.css">
 <style>
+body{
+	overflow-x: hidden;
+
+}
 	td{text-align:center;}
 	header{
 padding-left:0px;
@@ -87,13 +91,14 @@ header .righter{width: 200px;text-align:right;}
 	text-decoration: underline;
 }
 .table-contain{
-	margin-left: 7%;
+	padding-left: 7%;
 }
 .shop-temp-contain{
 	padding-top:2%;
 	display:flex;
 	justify-content: center;
 	gap: 100px;
+	flex-wrap: wrap;
 }
 .temp_img{
 width: 300px;

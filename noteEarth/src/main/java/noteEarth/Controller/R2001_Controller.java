@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import noteEarth.service.R2001_Service;
+import noteEarth.vo.Mytemplates;
 import noteEarth.vo.PageTemplates;
 
 
@@ -28,5 +30,12 @@ public class R2001_Controller {
 		service.getTemplate(tempCode);
 		d.addAttribute("temp",service.getTemplate(tempCode));
 		return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
+	}
+	
+	@PostMapping("/insertTemp.do")
+	public String insertTemp(Mytemplates ins, Model d){
+	    service.insertTemp(ins);
+	    d.addAttribute("msg","등록성공");
+	    return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
 }

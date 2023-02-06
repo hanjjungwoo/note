@@ -66,10 +66,20 @@
 	$(document).ready(function(){
 		<%-- 
 		
-		--%>	
+		--%>
+	    var msg = "${msg}"
+	        if(msg!=""){
+	        	if(confirm(msg+"\n 조회화면으로 이동하시겠습니까?")){
+	            	location.href="${path}/shopTempList.do";
+	            }
+        }
 		$("#goMain").click(function(){
 			location.href="${path}/shopTempList.do"			
-		});		
+		});
+	    $("#buyBtn").click(function(){
+	  		confirm("구매하시겠습니까?")
+			$("form").submit()
+      	})
 	});
 </script>
 </head>
@@ -78,12 +88,13 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">템플릿</h4>
-        <form method="post" class="validation-form" novalidate>
+        <form method="post" action="${path}/insertTemp.do?email=user001@naver.com" class="validation-form" novalidate>
           <div class="temp-flex-contain">
           	<div class="temp-flex-contain-left">
           		<div class="temp_img"><img class="temp_preImg" src="${temp.thumbnail }"></div>
           	</div>
           	<div class="temp-flex-contain-right">
+          		<input type="hidden" name="email" value="user001@naver.com">
           		<p><span>템플릿 코드 : </span>${temp.tempCode }</p>
           		<p><span>템플릿 이름 : </span>${temp.tempTitle }</p>
           		<p><span>템플릿 가격 : </span>${temp.price }</p>
@@ -92,7 +103,7 @@
           	</div>
           </div>
           <div class="datail-btn-contain">
-			<button id="delBtn" class="btn btn-outline-primary btn-lg btn-block datail-btn" type="button" style="margin-bottom: 5%;">템플릿 구매</button>
+			<button id="buyBtn" class="btn btn-outline-primary btn-lg btn-block datail-btn" type="button" style="margin-bottom: 5%;">템플릿 구매</button>
           	<button id="goMain" class="btn btn-secondary  btn-lg btn-block datail-btn" type="button">이전 화면</button>
           </div>
         </form>

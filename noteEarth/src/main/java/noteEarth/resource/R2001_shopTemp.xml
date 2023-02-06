@@ -7,9 +7,13 @@
 	<select id="getPageTempList" parameterType="pageTemplates" resultType="pageTemplates">
 		SELECT * FROM PAGETEMPLATES
 		WHERE tempTitle LIKE '%' ||#{tempTitle}||'%'
+		ORDER BY sales DESC
 	</select>
   	<select id="getTemplate" resultType="pageTemplates" parameterType="pageTemplates">
        		SELECT * FROM PAGETEMPLATES
 			WHERE tempCode= #{tempCode}
   	</select>
+  	<insert id="insertTemp" parameterType="mytemplates">
+  			INSERT INTO MYTEMPLATES VALUES (#{email},#{tempCode})
+  	</insert>
 </mapper>
