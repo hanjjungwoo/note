@@ -3,7 +3,6 @@
 
 
 <mapper namespace="noteEarth.dao.R2000_myTempsDao">
-	
 	<select id="selectMyTemps" parameterType="string" resultType="pageTemplates">
 		SELECT p.TEMPCODE ,TEMPTITLE, CATEGORY,THUMBNAIL FROM MYTEMPLATES m , PAGETEMPLATES p WHERE p.TEMPCODE = m.TEMPCODE AND email = #{email}
 	</select>
@@ -11,7 +10,4 @@
 	<select id="selectTemplateHTML" parameterType="string" resultType="string">
 	select templateHTML from PAGETEMPLATES where tempCode = #{tempCode}
 	</select>
-
-	
-
 </mapper>

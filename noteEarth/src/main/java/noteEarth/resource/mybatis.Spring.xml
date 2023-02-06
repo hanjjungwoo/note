@@ -15,6 +15,7 @@
 			<mapper resource="noteEarth/resource/R4000_notesMapper.xml"/>
 			<mapper resource="noteEarth/resource/R2000_myTempsMapper.xml"/>		
 			<mapper resource="noteEarth/resource/R1000_Mapper.xml"/>		
+			<mapper resource="noteEarth/resource/R2001_shopTemp.xml"/>		
 	</mappers>
 	
 	

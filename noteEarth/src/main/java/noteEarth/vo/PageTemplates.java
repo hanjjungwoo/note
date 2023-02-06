@@ -22,7 +22,6 @@ public class PageTemplates {
 		this.thumbnail = thumbnail;
 		this.templateHTML = templateHTML;
 	}
-	
 	public String getTempCode() {
 		return tempCode;
 	}
@@ -64,8 +63,5 @@ public class PageTemplates {
 	}
 	public void setTemplateHTML(String templateHTML) {
 		this.templateHTML = templateHTML;
-	}
-	
-	
-	
+	}	
 }

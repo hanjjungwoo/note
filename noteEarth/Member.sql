@@ -47,5 +47,9 @@ CREATE TABLE member2323( name varchar2(20));
 
 
 UPDATE N_E_MEMBER 
-SET email = 'aoddl56@nate.com', PASSWORD ='2222'
+SET email = '28888wjdaud@naver.com'
 WHERE name='이정명' AND rrn='950828-1111111';
+
+UPDATE N_E_MEMBER 
+SET KAKAOEMAIL = NULL, GOOGLEEMAIL = null
+WHERE email = '28888wjdaud@naver.com';

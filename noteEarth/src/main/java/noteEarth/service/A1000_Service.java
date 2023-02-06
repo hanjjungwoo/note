@@ -52,4 +52,7 @@ public class A1000_Service {
 		 System.out.println("S:"+upt.getEmail());
 		return dao.NE_UpdateInfo(upt);
 	}
+	public int NE_LinkSns(Member upt) {
+		return dao.NE_LinkSns(upt);
+	}
 }
