@@ -29,4 +29,10 @@ public class R2001_Service {
 	public void insertTemp(Mytemplates ins) {
 		dao.insertTemp(ins);
 	}
+	
+	public void uptBuyCnt(int sales) {
+		
+		dao.uptBuyCnt(sales);
+	}
+	
 }

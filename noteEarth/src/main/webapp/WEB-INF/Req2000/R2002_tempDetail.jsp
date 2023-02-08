@@ -88,19 +88,20 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">템플릿</h4>
-        <form method="post" action="${path}/insertTemp.do?email=user001@naver.com" class="validation-form" novalidate>
+        <form method="post" action="${path}/insertTemp.do?email=${Login.email }" class="validation-form" novalidate>
           <div class="temp-flex-contain">
           	<div class="temp-flex-contain-left">
           		<div class="temp_img"><img class="temp_preImg" src="${temp.thumbnail }"></div>
           	</div>
           	<div class="temp-flex-contain-right">
-          		<input type="hidden" name="email" value="user001@naver.com">
           		<input type="hidden" name="tempCode" value="${temp.tempCode})">
+          		<input type="hidden" value="${Login.email }">
           		<p><span>템플릿 코드 : </span>${temp.tempCode }</p>
           		<p><span>템플릿 이름 : </span>${temp.tempTitle }</p>
           		<p><span>템플릿 가격 : </span>${temp.price }</p>
           		<p><span>템플릿 종류 : </span>${temp.category }</p>
           		<p><span>판 매 량 : </span>${temp.sales }</p>
+
           	</div>
           </div>
           <div class="datail-btn-contain">

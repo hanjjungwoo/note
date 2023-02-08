@@ -182,6 +182,7 @@ text-align: center;
 	    <button class="btn btn-dark" type="submit">Search</button>
  	</nav>
 	</form>
+	<input type="hidden" value="${Login.email }">
 	<div class="shop-temp-contain">
 		<c:forEach var="pageTemplates" items="${templist }">
 	    	<div class="temp-val" ondblclick="goDetail('${pageTemplates.tempCode}')">

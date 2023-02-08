@@ -12,4 +12,5 @@ public interface R2001_shopTemp {
 
 	public void insertTemp(Mytemplates ins);		// 템플릿 구매하기
 	
+	public void uptBuyCnt(int sales);		// 구매량
 }

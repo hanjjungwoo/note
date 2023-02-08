@@ -25,7 +25,7 @@
 <body>
 
 	<h1>메인화면</h1>
-  
+  	<a href="${path }/shopTempList.do">Market</a>
 
 </body>
 </html>

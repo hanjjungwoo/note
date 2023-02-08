@@ -1,5 +1,8 @@
 package noteEarth.Controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,9 @@ public class R2001_Controller {
 	
 	// http://localhost:7077/noteEarth/shopTempList.do
 	@RequestMapping("/shopTempList.do")		// 마켓에서 판매하는 템플릿 보여줌
-	public String tempList(@ModelAttribute("sch") PageTemplates sch, Model d) {
+	public String tempList(@ModelAttribute("sch") PageTemplates sch, Model d, HttpServletRequest request) {
+		HttpSession session =request.getSession();
+		session.getAttribute("Login");
 		d.addAttribute("templist", service.getPageTempList(sch));
 		return "WEB-INF\\Req2000\\R2001_search.jsp";
 	}
@@ -35,7 +40,15 @@ public class R2001_Controller {
 	@PostMapping("/insertTemp.do")
 	public String insertTemp(Mytemplates ins, Model d){
 	    service.insertTemp(ins);
-	    d.addAttribute("msg","등록성공");
+	    d.addAttribute("msg","구매성공gg");
+	    
 	    return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
+	@GetMapping("/buy.do")
+	public String uptBuyCnt(@RequestParam("sales") 
+		int sales, Model d){
+		service.uptBuyCnt(sales);
+		return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
+	}
+
 }

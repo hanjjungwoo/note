@@ -16,4 +16,9 @@
   	<insert id="insertTemp" parameterType="mytemplates">
   			INSERT INTO MYTEMPLATES VALUES ('user001@naver.com',#{tempCode})
   	</insert>
+ 	<update id="uptBuyCnt" parameterType="int">
+		UPDATE PAGETEMPLATES
+			SET sales = sales+1
+	  	WHERE tempCode = #{tempCode}				
+	</update>	
 </mapper>
