@@ -133,13 +133,18 @@ text-align: center;
 				}
 			}
 		}) */
-		var tempCodeVal=$("#input-hidden").val();
-		console.log(tempCodeVal)
+/* 		$(".temp-val").dblclick(function(){
+			//var tempCodeVal=$(".input-hidden").val();
+			//console.log("${path}/template.do?tempCode="+tempCodeVal)
+			console.log($(this "input").val)
+			//location.href="${path}/template.do?tempCode="+$(".input-hidden").val()
+		}) */
 	});
-	
- 	function goDetail(tempCode){            
- 		location.href="${path}/template.do?tempCode="+tempCode      
-  	}
+	function goDetail(tempCode){
+		console.log(tempCode);
+		location.href="${path}/template.do?tempCode="+tempCode;
+	}
+
 
 </script>
 </head>
@@ -187,12 +192,12 @@ text-align: center;
 	</form>
 	<div class="shop-temp-contain">
 		<c:forEach var="pageTemplates" items="${templist }">
-	    	<div ondblclick="goDetail(${pageTemplates.tempCode })">
+	    	<div class="temp-val" ondblclick="goDetail('${pageTemplates.tempCode}')">
     			<div class="temp_img"><img class="temp_preImg" src="${pageTemplates.thumbnail }"></div>
 		    	<div class="temp_header">
 		    		<span>${pageTemplates.tempTitle }</span><span>${pageTemplates.sales }</span>
 				</div>
-				<input type="hidden" value="${pageTemplates.tempCode }" id="input-hidden"></input>
+				<input type="hidden" value="${pageTemplates.tempCode }" class="input-hidden"></input>
 		    </div>
 		</c:forEach>
 	</div>

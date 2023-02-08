@@ -95,6 +95,7 @@
           	</div>
           	<div class="temp-flex-contain-right">
           		<input type="hidden" name="email" value="user001@naver.com">
+          		<input type="hidden" name="tempCode" value="${temp.tempCode})">
           		<p><span>템플릿 코드 : </span>${temp.tempCode }</p>
           		<p><span>템플릿 이름 : </span>${temp.tempTitle }</p>
           		<p><span>템플릿 가격 : </span>${temp.price }</p>

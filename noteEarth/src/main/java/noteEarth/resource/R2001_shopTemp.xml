@@ -14,6 +14,6 @@
 			WHERE tempCode= #{tempCode}
   	</select>
   	<insert id="insertTemp" parameterType="mytemplates">
-  			INSERT INTO MYTEMPLATES VALUES (#{email},#{tempCode})
+  			INSERT INTO MYTEMPLATES VALUES ('user001@naver.com',#{tempCode})
   	</insert>
 </mapper>
