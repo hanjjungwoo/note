@@ -261,7 +261,7 @@ var connected_at="";
 var kakaoemail="";
 //카카오로그인
 Kakao.init('397291d0416daa0cdb592b95e6b9c7f7'); //발급받은 키 중 javascript키를 사용해준다.
-function kakaoLogin(method){
+function kakaoLogin(){
 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
     Kakao.Auth.login({
       scope:'profile_nickname,account_email',
@@ -275,7 +275,7 @@ function kakaoLogin(method){
         	  if(typeof kakao_account != 'undefined'){
             	  kakaoemail = kakao_account.email;         	
               }
-              if(method=='befor'){SNSResult('kakao',kakaoemail)}
+              if(Loginemail==''){SNSResult('kakao',kakaoemail)}
               else{LinkSns('kakao',kakaoemail)}
         	  	 
           },

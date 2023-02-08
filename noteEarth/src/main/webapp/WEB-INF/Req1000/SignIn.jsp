@@ -69,7 +69,7 @@
 	</div>
 	<div class="g_id_signin" data-type="outline" data-size="large" ></div>
      <input type="hidden" name="snsemail">
-	<img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin('befor')">
+	<img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin()">
     </div>
     
   </form>

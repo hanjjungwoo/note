@@ -23,15 +23,6 @@
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script type="text/javascript">
-
-var Loginemail = '${Login.email}' //js파일에서쓸 세션이메일
-
-
-
-			
-	
-</script>
 </head>
 
 <body>
@@ -147,7 +138,7 @@ var Loginemail = '${Login.email}' //js파일에서쓸 세션이메일
 			</div>
 			<div class="g_id_signin" data-type="outline" data-size="large" ></div>
 	    <h4 style="text-align:center;">카카오연동</h4>
-		   <img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin('after')">
+		   <img src="${path}/resources/img/kakao_login_medium_narrow.png" onclick="kakaoLogin()">
 	   </div>
       </div>
       <div class="modal-footer">
@@ -159,14 +150,11 @@ var Loginemail = '${Login.email}' //js파일에서쓸 세션이메일
   </div>
 </div>
   
-  
-  
-  
  <%--EL태그써야하면 여기 --%>
 <script>
 var SessionEmail = '${Login.email}'; //세션처리된 이메일
 var SessionPass = '${Login.password}'; //세션처리된 비밀번호
-
+var Loginemail = '${Login.email}' //js파일에서쓸 세션이메일
 
 emailjs.init("mzN3R1G0GZQBRs8hh");
 </script>
