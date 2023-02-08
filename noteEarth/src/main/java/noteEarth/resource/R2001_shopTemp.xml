@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >	
+
+
+<mapper namespace="noteEarth.dao.R2001_shopTemp">
+	
+	<select id="getPageTempList" parameterType="pageTemplates" resultType="pageTemplates">
+		SELECT * FROM PAGETEMPLATES
+		WHERE tempTitle LIKE '%' ||#{tempTitle}||'%'
+		ORDER BY sales DESC
+	</select>
+  	<select id="getTemplate" resultType="pageTemplates" parameterType="pageTemplates">
+       		SELECT * FROM PAGETEMPLATES
+			WHERE tempCode= #{tempCode}
+  	</select>
+  	<insert id="insertTemp" parameterType="mytemplates">
+  			INSERT INTO MYTEMPLATES VALUES ('user001@naver.com',#{tempCode})
+  	</insert>
+</mapper>
