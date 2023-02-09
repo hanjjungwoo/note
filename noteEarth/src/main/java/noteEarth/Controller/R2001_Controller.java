@@ -23,34 +23,31 @@ public class R2001_Controller {
 	private R2001_Service service;
 	
 	// http://localhost:7077/noteEarth/shopTempList.do
+	
+	
 	@RequestMapping("/shopTempList.do")		// 마켓에서 판매하는 템플릿 보여줌
-	public String tempList(@ModelAttribute("sch") PageTemplates sch, Model d, HttpServletRequest request) {
-		HttpSession session =request.getSession();
-		session.getAttribute("Login");
+	public String tempList(@ModelAttribute("sch") PageTemplates sch,
+			Model d, HttpServletRequest request) {
 		d.addAttribute("templist", service.getPageTempList(sch));
 		return "WEB-INF\\Req2000\\R2001_search.jsp";
 	}
+	
 	@GetMapping("/template.do")		// 템플릿 상세페이지
-	public String getTemplate(@RequestParam("tempCode") String tempCode, Model d) {
+	public String getTemplate(@RequestParam("tempCode")
+	String tempCode, Model d) {
 		service.getTemplate(tempCode);
 		d.addAttribute("temp",service.getTemplate(tempCode));
 		return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
 	
 	@PostMapping("/insertTemp.do")
-	public String insertTemp(Mytemplates ins, Model d,String tempCode){
+	public String insertTemp(Mytemplates ins, Model d,
+			String tempCode){
 	    service.insertTemp(ins);
 	    service.uptBuyCnt(tempCode);
 	    d.addAttribute("msg","구매성공");
 	    
 	    return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
-	/*
-	@GetMapping("/buy.do")
-	public String uptBuyCnt(@RequestParam("sales") 
-	Mytemplates upt, Model d){
-		service.uptBuyCnt(upt);
-		return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
-	}
-*/
+
 }

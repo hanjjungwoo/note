@@ -4,7 +4,8 @@
 
 <mapper namespace="noteEarth.dao.R2001_shopTemp">
 	
-	<select id="getPageTempList" parameterType="pageTemplates" resultType="pageTemplates">
+	<select id="getPageTempList" parameterType="pageTemplates" 
+	resultType="pageTemplates">
 		SELECT * FROM PAGETEMPLATES
 		WHERE tempTitle LIKE '%' ||#{tempTitle}||'%'
 		ORDER BY sales DESC

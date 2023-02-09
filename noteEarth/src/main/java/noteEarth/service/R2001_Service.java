@@ -15,10 +15,12 @@ public class R2001_Service {
 	private R2001_shopTemp dao;
 	
 	// 마켓에서 템플릿을 볼수있는 기능
+	
 	public List<PageTemplates> getPageTempList(PageTemplates sch){
 		if(sch.getTempTitle()==null) sch.setTempTitle("");
 		return dao.getPageTempList(sch);
 	}
+	
 	// 마켓에서 템플릿 클릭시 템플릿 상세
 	public PageTemplates getTemplate(String tempCode) {
 		return dao.getTemplate(tempCode);

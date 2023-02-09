@@ -185,12 +185,17 @@ text-align: center;
 	<input type="hidden" value="${Login.email }">
 	<div class="shop-temp-contain">
 		<c:forEach var="pageTemplates" items="${templist }">
-	    	<div class="temp-val" ondblclick="goDetail('${pageTemplates.tempCode}')">
-    			<div class="temp_img"><img class="temp_preImg" src="${pageTemplates.thumbnail }"></div>
+	    	<div class="temp-val" 
+	    	ondblclick="goDetail('${pageTemplates.tempCode}')">
+    			<div class="temp_img">
+    				<img class="temp_preImg" src="${pageTemplates.thumbnail }">
+    			</div>
 		    	<div class="temp_header">
-		    		<span>${pageTemplates.tempTitle }</span><span>${pageTemplates.sales }</span>
+		    		<span>${pageTemplates.tempTitle }</span>
+		    		<span>${pageTemplates.sales }</span>
 				</div>
-				<input type="hidden" value="${pageTemplates.tempCode }" class="input-hidden"></input>
+				<input type="hidden" value="${pageTemplates.tempCode }" 
+				class="input-hidden"></input>
 		    </div>
 		</c:forEach>
 	</div>
