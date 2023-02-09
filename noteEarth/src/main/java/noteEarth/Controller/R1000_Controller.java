@@ -51,7 +51,7 @@ public class R1000_Controller {
 			 return "WEB-INF\\Req1000\\Main.jsp";
 		// 그냥 데이터받을경우 일반로그인
 		}else{
-			System.out.println("Sndd"+log.getSnsemail());
+			//System.out.println("Sndd"+log.getSnsemail());
 			if(service.NE_Login(log)!=null) { 
 				 session.setAttribute("Login", service.NE_Login(log));
 				 return "WEB-INF\\Req1000\\Main.jsp";

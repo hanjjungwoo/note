@@ -31,14 +31,15 @@
     	
     	<select id="NE_Login" resultType="member" parameterType="member">
     		select * from n_e_member 
-			where (email || kakaoemail || googleemail) LIKE '%'||#{email}||'%'
-			<if test="snsemail!=null">
-			OR (email || kakaoemail || googleemail) LIKE '%'||#{snsemail}||'%'
-			</if>
-			<if test="password!=null">
+			where email LIKE '%'||#{email}||'%'
 			and password=#{password}
-			</if>
-    	</select>
+		</select>
+		
+		
+		<select id="NE_LoginE" resultType="member" parameterType="member">
+			select * from n_e_member
+			where (email || kakaoemail || googleemail) LIKE '%'||#{snsemail}||'%'
+		</select>
     	
     	
     	<!-- sns로그인시도시 연동추가 -->
