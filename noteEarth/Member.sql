@@ -30,7 +30,7 @@ INSERT INTO n_e_member VALUES('mem-'||n_e_member_seq.nextval,'28888wjdaud@naver.
 SELECT email,kakaoemail,googleemail FROM n_e_member WHERE (email || kakaoemail || googleemail) like '%'||'28888wjdaud@google.com'||'%';
 --기존 계정에 카카오 이메일 추가
 UPDATE N_E_MEMBER
-SET PASSWORD  = '1234'
+SET PASSWORD  = '12345'
 WHERE NAME = '김박박';
 
 --??
