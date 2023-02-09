@@ -9,6 +9,7 @@ public interface R4000_notesDao {
 	
 	public String createNotesSeq();
 	public void insertNotes(Notes newNote);
+	public void updateNotes(Notes notes);
 	
 	public String createPagesSeq();
 	public void insertPages(Pages pages);
@@ -18,6 +19,7 @@ public interface R4000_notesDao {
 	
 	public void updatePageMainHTML(Pages pages);
 	
+	public void deleteNotes(Notes notes);
 	public void deletePages(Pages pages);
 	
 	public void add1intoPageIndexAfterThisPage(Pages pages);

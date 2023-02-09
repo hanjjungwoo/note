@@ -11,6 +11,9 @@
 		INSERT INTO notes values(#{noteCode},#{email},#{noteTitle})
 	</insert>
 	
+	<update id="updateNotes" parameterType="Notes">
+	update notes set noteTitle = #{noteTitle} where noteCode=#{noteCode}
+	</update>
 	
 	<select id="createPagesSeq" resultType="String">
 		SELECT to_char(sysdate,'YYYYMMDDHH24MISS')||pagesSeq.nextval FROM dual
@@ -57,6 +60,11 @@
 	<update id="updatePageMainHTML" parameterType="pages">
 	update pages set mainHTML = #{mainHTML} where pageCode = #{pageCode}
 	</update>
+
+<delete id="deleteNotes">
+delete from Notes where notecode= #{noteCode} and email = #{email}
+</delete>
+
 
 <delete id="deletePages" parameterType="pages">
 	delete from Pages where 
