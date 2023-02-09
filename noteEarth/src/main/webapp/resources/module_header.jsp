@@ -176,7 +176,7 @@ var SessionPass = '${Login.password}'; //세션처리된 비밀번호
 
 emailjs.init("mzN3R1G0GZQBRs8hh");
 </script>
-<script src="${path}/resources/js/Top.js"></script> <%--el태그안써도되는것만 여기 --%>
+<script src="${path}/resources/js/for_module_header.js"></script> <%--el태그안써도되는것만 여기 --%>
 
 
 

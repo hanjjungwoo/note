@@ -13,19 +13,11 @@
 </head>
 
 <body>
-notes : ${notes.noteCode }<br>
- &nbsp;${notes.email }<br>
-pages: ${pages.pageIndex }<br>
- &nbsp;${pages.pageCode }<br>
- &nbsp;${pages.tempCode }<br>
- &nbsp;${pages.noteCode }<br>
 
 
 <main>
 ${pages.mainHTML}
 </main>
-
-서버용 코드 바꿀거 c:set var="path" value="http://106.10.71.20:6080/noteEarth"/
 
 <div class="pagenav">
 <div>
