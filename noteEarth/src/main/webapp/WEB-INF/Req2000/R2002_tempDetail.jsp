@@ -77,8 +77,10 @@
 			location.href="${path}/shopTempList.do"			
 		});
 	    $("#buyBtn").click(function(){
-	  		confirm("구매하시겠습니까?")
-			$("form").submit()
+	  		if(confirm("구매하시겠습니까?")){
+	  			$("form").submit()
+	  		}
+			
       	})
 	});
 </script>
@@ -88,14 +90,15 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">템플릿</h4>
-        <form method="post" action="${path}/insertTemp.do?email=${Login.email }" class="validation-form" novalidate>
+        <form method="post" action="${path}/insertTemp.do" class="validation-form" novalidate>
           <div class="temp-flex-contain">
           	<div class="temp-flex-contain-left">
           		<div class="temp_img"><img class="temp_preImg" src="${temp.thumbnail }"></div>
           	</div>
           	<div class="temp-flex-contain-right">
-          		<input type="hidden" name="tempCode" value="${temp.tempCode})">
-          		<input type="hidden" value="${Login.email }">
+          		<input type="hidden" name="tempCode" value="${temp.tempCode}">
+          		<input type="hidden" name="email" value="${Login.email }">
+          		<input type="hidden" name="sales" value="${temp.sales }">
           		<p><span>템플릿 코드 : </span>${temp.tempCode }</p>
           		<p><span>템플릿 이름 : </span>${temp.tempTitle }</p>
           		<p><span>템플릿 가격 : </span>${temp.price }</p>

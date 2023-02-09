@@ -38,17 +38,19 @@ public class R2001_Controller {
 	}
 	
 	@PostMapping("/insertTemp.do")
-	public String insertTemp(Mytemplates ins, Model d){
+	public String insertTemp(Mytemplates ins, Model d,String tempCode){
 	    service.insertTemp(ins);
-	    d.addAttribute("msg","구매성공gg");
+	    service.uptBuyCnt(tempCode);
+	    d.addAttribute("msg","구매성공");
 	    
 	    return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
+	/*
 	@GetMapping("/buy.do")
 	public String uptBuyCnt(@RequestParam("sales") 
-		int sales, Model d){
-		service.uptBuyCnt(sales);
+	Mytemplates upt, Model d){
+		service.uptBuyCnt(upt);
 		return "WEB-INF\\Req2000\\R2002_tempDetail.jsp";
 	}
-
+*/
 }

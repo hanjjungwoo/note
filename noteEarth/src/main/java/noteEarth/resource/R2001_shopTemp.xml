@@ -14,9 +14,9 @@
 			WHERE tempCode= #{tempCode}
   	</select>
   	<insert id="insertTemp" parameterType="mytemplates">
-  			INSERT INTO MYTEMPLATES VALUES ('user001@naver.com',#{tempCode})
+  			INSERT INTO MYTEMPLATES VALUES (#{email},#{tempCode})
   	</insert>
- 	<update id="uptBuyCnt" parameterType="int">
+ 	<update id="uptBuyCnt" parameterType="mytemplates">
 		UPDATE PAGETEMPLATES
 			SET sales = sales+1
 	  	WHERE tempCode = #{tempCode}				

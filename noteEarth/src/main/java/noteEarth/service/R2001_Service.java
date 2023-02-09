@@ -19,20 +19,15 @@ public class R2001_Service {
 		if(sch.getTempTitle()==null) sch.setTempTitle("");
 		return dao.getPageTempList(sch);
 	}
-	
 	// 마켓에서 템플릿 클릭시 템플릿 상세
 	public PageTemplates getTemplate(String tempCode) {
 		return dao.getTemplate(tempCode);
 	}
-	
 	// 템플릿 구매하기
 	public void insertTemp(Mytemplates ins) {
 		dao.insertTemp(ins);
 	}
-	
-	public void uptBuyCnt(int sales) {
-		
-		dao.uptBuyCnt(sales);
+	public void uptBuyCnt(String tempCode) {
+		dao.uptBuyCnt(tempCode);
 	}
-	
 }

@@ -3,7 +3,6 @@ package noteEarth.vo;
 public class Mytemplates {
 	private String email;
 	private String tempCode;
-	
 	public Mytemplates() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -30,5 +29,6 @@ public class Mytemplates {
 	public void setTempCode(String tempCode) {
 		this.tempCode = tempCode;
 	}
+
 	
 }
